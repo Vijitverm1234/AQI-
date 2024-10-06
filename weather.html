@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Weather app</title>
+    <link href="style7.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  </head>
+  <body>
+    <nav class="navbar navbar-dark navbar-expand-lg bg-primary" >
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#"><B>AQI</B></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">About Us</a>
+              </li>
+              
+              <li class="nav-item">
+                <a class="nav-link">Usage Guide</a>
+              </li>
+            </ul>
+            <form class="d-flex" role="search">
+              <input id='city' class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-primary me-md-2" type="submit" id="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+      <div class="container">
+        <h1 class="my-4 text-center">Air Content Of <span id="cityname"></span></h1>
+        <main>
+            <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+              <div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm border-primary">
+                  <div class="card-header py-3 text-bg-primary border-primary">
+                    <h4 class="my-0 fw-normal">CO content</h4>
+                  </div>
+                  <div class="card-body">
+                    <h1 class="card-title pricing-card-title">CO</h1>
+                    <ul class="list-unstyled mt-3 mb-4">
+                      <li>CO Concentration is <span id="co1"></span></li>
+                      <li>CO AQI is <span id="co2"></span></li>
+                     
+                    </ul>
+                   
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm border-primary">
+                  <div class="card-header py-3 text-bg-primary border-primary">
+                    <h4 class="my-0 fw-normal">PM10 content</h4>
+                  </div>
+                  <div class="card-body">
+                    <h1 class="card-title pricing-card-title">PM10</h1>
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li>PM10 Concentration is <span id="pm101"></span></li>
+                        <li>PM10 AQI is <span id="pm102"></span></li>
+                    </ul>
+                  
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm border-primary">
+                  <div class="card-header py-3 text-bg-primary border-primary">
+                    <h4 class="my-0 fw-normal">Ozone content</h4>
+                  </div>
+                  <div class="card-body">
+                    <h1 class="card-title pricing-card-title">O<sub>3</sub></h1>
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li>O<sub>3</sub> Concentration is <span id="o31"></span></li>
+                        <li>O<sub>3</sub> AQI is <span id="o32"></span></li>
+                    </ul>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+              <div class="row">
+                 <center> <div class="col-9 " style="margin-bottom: 30px;">
+                      <div class="card">
+                          <div class="card-body">
+                              <h5 id="cityName">Air Quality Data (AQI)</h5>
+                              <hr>
+                              <canvas id="myChart"></canvas>
+                          </div>
+                      </div>
+                  </center>
+                  </div>
+              </div>
+          </div>
+
+
+            <h2 class="display-6 text-center mb-4" style="margin-top: 30px;"><b>AQI Today</b></h2>
+        
+            <div class="table-responsive">
+              <table class="table text-center">
+                <thead>
+                  <tr>
+                    <th style="width: 22%;"></th>
+                    <th style="width: 12%;">CO<th>
+                        <th style="width: 12%;">NO2<th>
+                        <th style="width: 12%;">O3<th>
+                   
+                        <th style="width: 12%;">PM10<th>
+                        <th style="width: 12%;">SO2<th>
+                        <th style="width: 12%;">overall_aqi<th>
+                        
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row" class="text-start">Muzaffar Nagar</th>
+                    <td><span id="mzn_co"></span><td>
+                        <td><span id="mzn_no2"></span><td>
+                        <td><span id="mzn_o3"></span><td>
+                        <td><span id="mzn_pm10"></span><td>
+                        <td><span id="mzn_so2"></span><td>
+                        <td><span id="mzn_aqi"></span><td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="text-start">Meerut</th>
+                    <td><span id="mrt_co"></span><td>
+                        <td><span id="mrt_no2"></span><td>
+                        <td><span id="mrt_o3"></span><td>
+                        <td><span id="mrt_pm10"></span><td>
+                        <td><span id="mrt_so2"></span><td>
+                        <td><span id="mrt_aqi"></span><td>
+                  </tr>
+                </tbody>
+        
+                <tbody>
+                  <tr>
+                    <th scope="row" class="text-start">Ghaziabad</th>
+                    <td><span id="gzb_co"></span><td>
+                        <td><span id="gzb_no2"></span><td>
+                        <td><span id="gzb_o3"></span><td>
+                        <td><span id="gzb_pm10"></span><td>
+                        <td><span id="gzb_so2"></span><td>
+                        <td><span id="gzb_aqi"></span><td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="text-start">Delhi</th>
+                    <td><span id="del_co"></span><td>
+                        <td><span id="del_no2"></span><td>
+                        <td><span id="del_o3"></span><td>
+                        <td><span id="del_pm10"></span><td>
+                        <td><span id="del_so2"></span><td>
+                        <td><span id="del_aqi"></span><td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="text-start">Gurgaon</th>
+                    <td><span id="gur_co"></span><td>
+                        <td><span id="gur_no2"></span><td>
+                        <td><span id="gur_o3"></span><td>
+                        <td><span id="gur_pm10"></span><td>
+                        <td><span id="gur_so2"></span><td>
+                        <td><span id="gur_aqi"></span><td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="text-start">Noida</th>
+                    <td><span id="noi_co"></span><td>
+                        <td><span id="noi_no2"></span><td>
+                        <td><span id="noi_o3"></span><td>
+                        <td><span id="noi_pm10"></span><td>
+                        <td><span id="noi_so2"></span><td>
+                        <td><span id="noi_aqi"></span><td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </main>
+      </div> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script src="cloud.js"></script>
+    <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
+ 
+<script src="https://mediafiles.botpress.cloud/ed93d8fd-5d40-421e-b497-b06ef05e9956/webchat/config.js" defer></script>
+<script>
+  let chart;
+
+  const reqoptions = {
+    method: 'GET',
+    headers: {
+      'X-RapidAPI-Key': '0f1f8608f9mshd7028d80cd64ed0p1685c0jsn8a8e20710db3',
+      'X-RapidAPI-Host': 'air-quality-by-api-ninjas.p.rapidapi.com'
+    }
+  };
+
+  // Function to fetch air quality data
+  function fetchAirQuality(city) {
+    fetch(`https://air-quality-by-api-ninjas.p.rapidapi.com/v1/airquality?city=${city}`, reqoptions)
+      .then(response => response.json())
+      .then((response) => {
+        console.log(response);
+
+        // Update chart data
+        updateChart(response, city);
+      })
+      .catch(err => {
+        console.error(err);
+        alert("Failed to fetch air quality data. Please try again.");
+      });
+  }
+
+  // Function to update the chart with new data
+  function updateChart(response, city) {
+    const coAqi = response.CO?.aqi || 0;
+    const pm10Aqi = response.PM10?.aqi || 0;
+    const o3Aqi = response.O3?.aqi || 0;
+    const no2Aqi = response.NO2?.aqi || 0;
+    const so2Aqi = response.SO2?.aqi || 0;
+
+    // Log AQI values for debugging
+    console.log(`AQI Values for ${city}: CO: ${coAqi}, PM10: ${pm10Aqi}, O3: ${o3Aqi}, NO2: ${no2Aqi}, SO2: ${so2Aqi}`);
+
+    document.getElementById("cityName").innerText = `Air Quality Data (AQI) for ${city}`;
+
+    const ctx = document.getElementById('myChart').getContext('2d');
+
+    if (chart) {
+      chart.destroy(); // Destroy the previous chart instance
+    }
+
+    // Create a new chart instance
+    chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['CO', 'PM10', 'O3 (Ozone)', 'NO2', 'SO2'],
+        datasets: [{
+          label: `Air Quality Index (AQI) for ${city}`,
+          data: [coAqi, pm10Aqi, o3Aqi, no2Aqi, so2Aqi], // These values should be populated from the API
+          borderColor: ['blue'],
+          borderWidth: 2,
+          borderRadius: 1,
+        }]
+      },
+
+    });
+  }
+
+  // Event listener for search button click
+  document.getElementById("submit").addEventListener("click", (event) => {
+    event.preventDefault();  // Prevent form submission
+    const city = document.getElementById("city").value.trim();
+    if (city) {
+      fetchAirQuality(city);
+    } else {
+      alert("Please enter a city name");
+    }
+  });
+
+  // Initial fetch for a default city
+  fetchAirQuality('Meerut');
+</script>
+
+
+<!-- Ensure Chart.js is correctly linked -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+</html>
